@@ -54,3 +54,11 @@ This package is small-scale, I created it simply for experience points.
 * I will not be publishing this library to PyPi.
 
 This may change in the future.
+
+### Installation
+
+Install through pip as if it's a regular github repository.
+
+```sh
+python -m pip install git+https://github.com/Kreusada/itertypes.git
+```
