@@ -1,3 +1,10 @@
+"""
+Iterators in Python aren't a matter of type but of protocol.  A large
+and changing number of builtin types implement *some* flavor of
+iterator. This private library explores into some of the iterable
+types.
+"""
+
 from typing import Any, Iterable, Iterator
 
 __all__ = (
@@ -32,10 +39,6 @@ FrozensetIteratorType = type(iter({1,}))  # same as set
 DictKeyIteratorType = type(iter({}))
 DictItemIteratorType = type(iter({}.items()))
 DictValueIteratorType = type(iter({}.values()))
-
-
-def _filter_base_type(t: type):
-    return lambda x: type(x) == t
 
 
 def isiterable(object: Any) -> bool:
