@@ -8,6 +8,7 @@ types.
 from typing import Any, Iterable, Iterator
 
 __all__ = (
+    "DictIteratorType",
     "DictKeyIteratorType",
     "DictItemIteratorType",
     "DictValueIteratorType",
@@ -35,8 +36,9 @@ StringIteratorType = type(iter(""))
 TupleIteratorType = type(iter((1,)))
 ListIteratorType = type(iter([]))
 SetIteratorType = type(iter({1,}))
-FrozensetIteratorType = type(iter({1,}))  # same as set
-DictKeyIteratorType = type(iter({}))
+FrozensetIteratorType = type(iter(frozenset()))  # same as set
+DictIteratorType = type(iter({})) # same as dict.keys()
+DictKeyIteratorType = type(iter({}.keys()))
 DictItemIteratorType = type(iter({}.items()))
 DictValueIteratorType = type(iter({}.values()))
 
