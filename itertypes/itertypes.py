@@ -22,6 +22,8 @@ __all__ = (
     "filter_array",
     "filter_iterable",
     "filter_noniterable",
+    "filter_remove_type",
+    "filter_type",
     "isstringiterator",
     "istupleiterator",
     "islistiterator",
@@ -33,7 +35,7 @@ __all__ = (
     "isdictvalueiterator",
 )
 
-__version__ = "1.1.3"
+__version__ = "1.1.4"
 
 StringIteratorType = type(iter(""))
 TupleIteratorType = type(iter((1,)))
