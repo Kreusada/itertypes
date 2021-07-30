@@ -37,7 +37,7 @@ TupleIteratorType = type(iter((1,)))
 ListIteratorType = type(iter([]))
 SetIteratorType = type(iter({1,}))
 FrozensetIteratorType = type(iter(frozenset()))  # same as set
-DictIteratorType = type(iter({})) # same as dict.keys()
+DictIteratorType = type(iter({}))  # same as dict.keys()
 DictKeyIteratorType = type(iter({}.keys()))
 DictItemIteratorType = type(iter({}.items()))
 DictValueIteratorType = type(iter({}.values()))
@@ -280,3 +280,39 @@ def filter_noniterable(iterable: Iterable[Any]) -> Iterable[Any]:
         The filtered iterable.
     """
     return list(filter(lambda x: not isiterable(x), iterable))
+
+
+def filter_type(iterable: Iterable[Any], types: Iterable[type]) -> Iterable[Any]:
+    """Filter certain types from an iterable.
+
+    Parameters
+    ----------
+    iterable : Iterable[Any]
+        The iterable to filter.
+    types : Iterable[Any]
+        The types to filter from the iterable.
+
+    Returns
+    -------
+    list
+        A list of filtered types from the iterable.
+    """
+    return list(filter(lambda x: type(x) in types, iterable))
+
+
+def filter_remove_type(iterable: Iterable[Any], types: Iterable[type]) -> Iterable[Any]:
+    """Filter certain types out of an iterable.
+
+    Parameters
+    ----------
+    iterable : Iterable[Any]
+        The iterable to filter.
+    types : Iterable[Any]
+        The types to filter out of the iterable.
+
+    Returns
+    -------
+    list
+        A list of filtered types from the iterable.
+    """
+    return list(filter(lambda x: type(x) not in types, iterable))
