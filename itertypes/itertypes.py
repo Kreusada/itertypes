@@ -7,34 +7,6 @@ types.
 
 from typing import Any, Iterable, Iterator
 
-__all__ = (
-    "__version__",
-    "DictIteratorType",
-    "DictKeyIteratorType",
-    "DictItemIteratorType",
-    "DictValueIteratorType",
-    "FrozensetIteratorType",
-    "ListIteratorType",
-    "SetIteratorType",
-    "StringIteratorType",
-    "TupleIteratorType",
-    "isiterable",
-    "filter_array",
-    "filter_iterable",
-    "filter_noniterable",
-    "filter_remove_type",
-    "filter_type",
-    "isstringiterator",
-    "istupleiterator",
-    "islistiterator",
-    "issetiterator",
-    "isfrozensetiterator",
-    "isdictiterator",
-    "isdictkeyiterator",
-    "isdictitemiterator",
-    "isdictvalueiterator",
-)
-
 __version__ = "1.1.4"
 
 StringIteratorType = type(iter(""))
@@ -46,6 +18,15 @@ DictIteratorType = type(iter({}))  # same as dict.keys()
 DictKeyIteratorType = type(iter({}.keys()))
 DictItemIteratorType = type(iter({}.items()))
 DictValueIteratorType = type(iter({}.values()))
+RangeIteratorType = type(iter(range(0)))
+LongRangeIteratorType = type(iter(range(1 << 1000)))
+
+BytearrayIteratorType = type(iter(bytearray()))
+ByteIteratorType = type(iter(bytes()))
+ListReversedIteratorType = type(iter(reversed([])))
+
+ZipIteratorType = type(iter(zip()))
+MapIteratorType = type(iter(map([],[])))
 
 
 def isiterable(object: Any) -> bool:
@@ -69,7 +50,7 @@ def isiterable(object: Any) -> bool:
         return True
 
 
-def isstringiterator(iterator: Iterator[Any]) -> bool:
+def isstringiterator(object: Iterator[Any]) -> bool:
     """Returns True or False based on whether the given object is a string iterator.
 
     Parameters
@@ -82,13 +63,13 @@ def isstringiterator(iterator: Iterator[Any]) -> bool:
     bool
         Whether the given object is a string iterator.
     """
-    if not isiterable(iterator):
+    if not isiterable(object):
         return False
 
-    return isinstance(iterator, StringIteratorType)
+    return isinstance(object, StringIteratorType)
 
 
-def istupleiterator(iterator: Iterator[Any]) -> bool:
+def istupleiterator(object: Iterator[Any]) -> bool:
     """Returns True or False based on whether the given object is a tuple iterator.
 
     Parameters
@@ -101,13 +82,13 @@ def istupleiterator(iterator: Iterator[Any]) -> bool:
     bool
         Whether the given object is a tuple iterator.
     """
-    if not isiterable(iterator):
+    if not isiterable(object):
         return False
 
-    return isinstance(iterator, TupleIteratorType)
+    return isinstance(object, TupleIteratorType)
 
 
-def islistiterator(iterator: Iterator[Any]) -> bool:
+def islistiterator(object: Iterator[Any]) -> bool:
     """Returns True or False based on whether the given object is a list iterator.
 
     Parameters
@@ -120,13 +101,13 @@ def islistiterator(iterator: Iterator[Any]) -> bool:
     bool
         Whether the given object is a list iterator.
     """
-    if not isiterable(iterator):
+    if not isiterable(object):
         return False
 
-    return isinstance(iterator, TupleIteratorType)
+    return isinstance(object, TupleIteratorType)
 
 
-def issetiterator(iterator: Iterator[Any]) -> bool:
+def issetiterator(object: Iterator[Any]) -> bool:
     """Returns True or False based on whether the given object is a set iterator.
 
     Parameters
@@ -139,13 +120,13 @@ def issetiterator(iterator: Iterator[Any]) -> bool:
     bool
         Whether the given object is a set iterator.
     """
-    if not isiterable(iterator):
+    if not isiterable(object):
         return False
 
-    return isinstance(iterator, SetIteratorType)
+    return isinstance(object, SetIteratorType)
 
 
-def isfrozensetiterator(iterator: Iterator[Any]) -> bool:
+def isfrozensetiterator(object: Iterator[Any]) -> bool:
     """Returns True or False based on whether the given object is a frozenset iterator.
 
     Parameters
@@ -158,13 +139,13 @@ def isfrozensetiterator(iterator: Iterator[Any]) -> bool:
     bool
         Whether the given object is a frozenset iterator.
     """
-    if not isiterable(iterator):
+    if not isiterable(object):
         return False
 
-    return isinstance(iterator, FrozensetIteratorType)
+    return isinstance(object, FrozensetIteratorType)
 
 
-def isdictiterator(iterator: Iterator[Any]) -> bool:
+def isdictiterator(object: Iterator[Any]) -> bool:
     """Returns True or False based on whether the given object is a dict iterator.
 
     Parameters
@@ -177,10 +158,10 @@ def isdictiterator(iterator: Iterator[Any]) -> bool:
     bool
         Whether the given object is a dict iterator.
     """
-    return isdictkeyiterator(iterator)
+    return isdictkeyiterator(object)
 
 
-def isdictkeyiterator(iterator: Iterator[Any]) -> bool:
+def isdictkeyiterator(object: Iterator[Any]) -> bool:
     """Returns True or False based on whether the given object is a dict key iterator.
 
     Parameters
@@ -193,13 +174,13 @@ def isdictkeyiterator(iterator: Iterator[Any]) -> bool:
     bool
         Whether the given object is a dict key iterator.
     """
-    if not isiterable(iterator):
+    if not isiterable(object):
         return False
 
-    return isinstance(iterator, DictKeyIteratorType)
+    return isinstance(object, DictKeyIteratorType)
 
 
-def isdictitemiterator(iterator: Iterator[Any]) -> bool:
+def isdictitemiterator(object: Iterator[Any]) -> bool:
     """Returns True or False based on whether the given object is a dict item iterator.
 
     Parameters
@@ -212,13 +193,13 @@ def isdictitemiterator(iterator: Iterator[Any]) -> bool:
     bool
         Whether the given object is a dict item iterator.
     """
-    if not isiterable(iterator):
+    if not isiterable(object):
         return False
 
-    return isinstance(iterator, DictItemIteratorType)
+    return isinstance(object, DictItemIteratorType)
 
 
-def isdictvalueiterator(iterator: Iterator[Any]) -> bool:
+def isdictvalueiterator(object: Iterator[Any]) -> bool:
     """Returns True or False based on whether the given object is a dict value iterator.
 
     Parameters
@@ -231,11 +212,143 @@ def isdictvalueiterator(iterator: Iterator[Any]) -> bool:
     bool
         Whether the given object is a dict value iterator.
     """
-    if not isiterable(iterator):
+    if not isiterable(object):
         return False
 
-    return isinstance(iterator, DictValueIteratorType)
+    return isinstance(object, DictValueIteratorType)
 
+
+def israngeiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a range iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a range iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a range iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, RangeIteratorType)
+
+
+def islongrangeiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a long range iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a long range iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a long range iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, LongRangeIteratorType)
+
+
+def isbytearrayiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a bytearray iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a bytearray iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a bytearray iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, BytearrayIteratorType)
+
+
+def isbytesiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a bytes iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a bytes iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a bytes iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, ByteIteratorType)
+
+
+def islistreversediterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a reversed list iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a reversed list iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a reversed list iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, ListReversedIteratorType)
+
+
+def iszipiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a zip iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a zip iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a zip iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, ZipIteratorType)
+
+
+def ismapiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a map iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a map iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a map iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, MapIteratorType)
 
 def filter_array(iterable: Iterable[Any], *types) -> Iterable[Any]:
     """Return the iterable with only the select types inside.
