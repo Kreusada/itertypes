@@ -8,6 +8,7 @@ types.
 from typing import Any, Iterable, Iterator
 
 __all__ = (
+    "__version__",
     "DictIteratorType",
     "DictKeyIteratorType",
     "DictItemIteratorType",
@@ -31,6 +32,8 @@ __all__ = (
     "isdictitemiterator",
     "isdictvalueiterator",
 )
+
+__version__ = "1.1.3"
 
 StringIteratorType = type(iter(""))
 TupleIteratorType = type(iter((1,)))
