@@ -7,8 +7,6 @@ types.
 
 from typing import Any, Iterable, Iterator
 
-__version__ = "1.1.4"
-
 StringIteratorType = type(iter(""))
 TupleIteratorType = type(iter((1,)))
 ListIteratorType = type(iter([]))
@@ -24,6 +22,7 @@ LongRangeIteratorType = type(iter(range(1 << 1000)))
 BytearrayIteratorType = type(iter(bytearray()))
 ByteIteratorType = type(iter(bytes()))
 ListReversedIteratorType = type(iter(reversed([])))
+MemoryviewIteratorType = type(iter(memoryview(bytes())))  # generic
 
 ZipIteratorType = type(iter(zip()))
 MapIteratorType = type(iter(map([],[])))
@@ -349,6 +348,26 @@ def ismapiterator(object: Iterator[Any]) -> bool:
         return False
 
     return isinstance(object, MapIteratorType)
+
+
+def ismemoryviewiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a memoryview iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a memoryview iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a memoryview iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, MemoryviewIteratorType)
+
 
 def filter_array(iterable: Iterable[Any], *types) -> Iterable[Any]:
     """Return the iterable with only the select types inside.

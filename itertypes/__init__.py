@@ -13,6 +13,7 @@ from .itertypes import (
     BytearrayIteratorType,
     ByteIteratorType,
     ListReversedIteratorType,
+    MemoryviewIteratorType,
     ZipIteratorType,
     MapIteratorType,
     isiterable,
@@ -40,4 +41,4 @@ from .itertypes import (
 )
 
 __author__ = "Kreusada"
-__version__ = "1.2.0"
+__version__ = "1.2.1"
