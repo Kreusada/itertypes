@@ -7,25 +7,23 @@ types.
 
 from typing import Any, Iterable, Iterator
 
-StringIteratorType = type(iter(""))
-TupleIteratorType = type(iter((1,)))
-ListIteratorType = type(iter([]))
-SetIteratorType = type(iter({1,}))
-FrozensetIteratorType = type(iter(frozenset()))  # same as set
-DictIteratorType = type(iter({}))  # same as dict.keys()
-DictKeyIteratorType = type(iter({}.keys()))
-DictItemIteratorType = type(iter({}.items()))
-DictValueIteratorType = type(iter({}.values()))
-RangeIteratorType = type(iter(range(0)))
-LongRangeIteratorType = type(iter(range(1 << 1000)))
-
-BytearrayIteratorType = type(iter(bytearray()))
-ByteIteratorType = type(iter(bytes()))
+BytearrayIteratorType    = type(iter(bytearray()))
+ByteIteratorType         = type(iter(bytes()))
+DictItemIteratorType     = type(iter({}.items()))
+DictIteratorType         = type(iter({}))  # same as dict.keys()
+DictKeyIteratorType      = type(iter({}.keys()))
+DictValueIteratorType    = type(iter({}.values()))
+FrozensetIteratorType    = type(iter(frozenset()))  # same as set
+ListIteratorType         = type(iter([]))
 ListReversedIteratorType = type(iter(reversed([])))
-MemoryviewIteratorType = type(iter(memoryview(bytes())))  # generic
-
-ZipIteratorType = type(iter(zip()))
-MapIteratorType = type(iter(map([],[])))
+LongRangeIteratorType    = type(iter(range(1 << 1000)))
+MapIteratorType          = type(iter(map([],[])))
+MemoryviewIteratorType   = type(iter(memoryview(bytes())))  # generic
+RangeIteratorType        = type(iter(range(0)))
+SetIteratorType          = type(iter({1,}))
+StringIteratorType       = type(iter(""))
+TupleIteratorType        = type(iter((1,)))
+ZipIteratorType          = type(iter(zip()))
 
 
 def isiterable(object: Any) -> bool:

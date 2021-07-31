@@ -49,12 +49,6 @@ isinstance(iterable, itertypes.DictValueIteratorType)
 
 This package is small-scale, I created it simply for experience points.
 
-* I am not expecting or wanting further distribution of this library.
-* I am not actively maintaining this project.
-* I will not be publishing this library to PyPi.
-
-This may change in the future.
-
 ### Installation
 
 Install through pip as if it's a regular github repository.
