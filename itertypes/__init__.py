@@ -46,8 +46,7 @@ from .itertypes import (
     isstringiterator,
     istupleiterator,
     iszipiterator,
-    itertypes,
 )
 
 __author__ = "Kreusada"
-__version__ = "1.3.0"
+__version__ = "1.3.1"
