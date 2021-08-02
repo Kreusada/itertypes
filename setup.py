@@ -7,7 +7,7 @@ import setuptools
 
 setup(
     name="itertypes",
-    version="1.2.2",
+    version="1.3.0",
     author="Kreusada",
     author_email="kreusadaprojects@gmail.com",
     description="A small library used to obtain types for various builtin iterators.",

@@ -7,23 +7,27 @@ types.
 
 from typing import Any, Iterable, Iterator
 
-BytearrayIteratorType    = type(iter(bytearray()))
-ByteIteratorType         = type(iter(bytes()))
-DictItemIteratorType     = type(iter({}.items()))
-DictIteratorType         = type(iter({}))  # same as dict.keys()
-DictKeyIteratorType      = type(iter({}.keys()))
-DictValueIteratorType    = type(iter({}.values()))
-FrozensetIteratorType    = type(iter(frozenset()))  # same as set
-ListIteratorType         = type(iter([]))
-ListReversedIteratorType = type(iter(reversed([])))
-LongRangeIteratorType    = type(iter(range(1 << 1000)))
-MapIteratorType          = type(iter(map([],[])))
-MemoryviewIteratorType   = type(iter(memoryview(bytes())))  # generic
-RangeIteratorType        = type(iter(range(0)))
-SetIteratorType          = type(iter({1,}))
-StringIteratorType       = type(iter(""))
-TupleIteratorType        = type(iter((1,)))
-ZipIteratorType          = type(iter(zip()))
+BytearrayIteratorType         = type(iter(bytearray()))
+ByteIteratorType              = type(iter(bytes()))
+DictItemIteratorType          = type(iter({}.items()))
+DictIteratorType              = type(iter({}))  # same as dict.keys()
+DictKeyIteratorType           = type(iter({}.keys()))
+DictReversedItemIteratorType  = type(iter(reversed({}.items())))
+DictReversedIteratorType      = type(iter(reversed({})))  # same as dict.keys()
+DictReversedKeyIteratorType   = type(iter(reversed({}.keys())))
+DictReversedValueIteratorType = type(iter(reversed({}.values())))
+DictValueIteratorType         = type(iter({}.values()))
+FrozensetIteratorType         = type(iter(frozenset()))  # same as set
+ListIteratorType              = type(iter([]))
+ListReversedIteratorType      = type(iter(reversed([])))
+LongRangeIteratorType         = type(iter(range(1 << 1000)))
+MapIteratorType               = type(iter(map([],[])))
+MemoryviewIteratorType        = type(iter(memoryview(bytes())))  # generic
+RangeIteratorType             = type(iter(range(0)))
+SetIteratorType               = type(iter({1,}))
+StringIteratorType            = type(iter(""))
+TupleIteratorType             = type(iter((1,)))
+ZipIteratorType               = type(iter(zip()))
 
 
 def isiterable(object: Any) -> bool:
@@ -213,6 +217,79 @@ def isdictvalueiterator(object: Iterator[Any]) -> bool:
         return False
 
     return isinstance(object, DictValueIteratorType)
+
+
+def isdictreversediterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a reversed dict iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a reversed dict iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a reversed dict iterator.
+    """
+    return isdictreversedkeyiterator(object)
+
+
+def isdictreversedkeyiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a reversed dict key iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a reversed dict key iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a reversed dict key iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, DictReversedKeyIteratorType)
+
+
+def isdictreverseditemiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a reversed dict item iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a reversed dict item iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a reversed dict item iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, DictReversedItemIteratorType)
+
+
+def isdictreversedvalueiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a reversed dict value iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a reversed dict value iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a reversed dict value iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, DictReversedValueIteratorType)
 
 
 def israngeiterator(object: Iterator[Any]) -> bool:

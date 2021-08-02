@@ -4,6 +4,10 @@ from .itertypes import (
     DictItemIteratorType,
     DictIteratorType,
     DictKeyIteratorType,
+    DictReversedItemIteratorType,
+    DictReversedIteratorType,
+    DictReversedKeyIteratorType,
+    DictReversedValueIteratorType,
     DictValueIteratorType,
     FrozensetIteratorType,
     ListIteratorType,
@@ -26,6 +30,10 @@ from .itertypes import (
     isdictitemiterator,
     isdictiterator,
     isdictkeyiterator,
+    isdictreverseditemiterator,
+    isdictreversediterator,
+    isdictreversedkeyiterator,
+    isdictreversedvalueiterator,
     isdictvalueiterator,
     isfrozensetiterator,
     isiterable,
@@ -42,4 +50,4 @@ from .itertypes import (
 )
 
 __author__ = "Kreusada"
-__version__ = "1.2.2"
+__version__ = "1.3.0"
