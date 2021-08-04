@@ -5,13 +5,16 @@ except ImportError:
 
 import setuptools
 
+with open("README.md", "r", encoding="utf-8") as fp:
+    long_description = fp.read()
+
 setup(
     name="itertypes",
     version="1.3.1",
     author="Kreusada",
     author_email="kreusadaprojects@gmail.com",
     description="A small library used to obtain types for various builtin iterators.",
-    long_description="A small library used to obtain types for various builtin iterators.",
+    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Kreusada/arrayfilters",
     packages=setuptools.find_packages(),

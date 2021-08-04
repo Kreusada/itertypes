@@ -1,4 +1,4 @@
-# IterTypes Private Library
+# IterTypes Library
 
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://user-images.githubusercontent.com/6032823/111363465-600fe880-8690-11eb-8377-ec1d4d5ff981.png)](https://github.com/PyCQA/isort)
@@ -54,10 +54,6 @@ iterable = iter({1: 2, 3: 4}.values())
 isinstance(iterable, itertypes.DictValueIteratorType)
 >>> True
 ```
-
-### Notes about the package
-
-This package is small-scale, I created it simply for experience points.
 
 ### Installation
 
