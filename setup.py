@@ -10,7 +10,7 @@ with open("README.md", "r", encoding="utf-8") as fp:
 
 setup(
     name="itertypes",
-    version="1.3.1",
+    version="1.3.2",
     author="Kreusada",
     author_email="kreusadaprojects@gmail.com",
     description="A small library used to obtain types for various builtin iterators.",
