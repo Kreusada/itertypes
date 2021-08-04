@@ -1,6 +1,5 @@
 @echo off
 
-CALL %userprofile%\redenv\Scripts\activate.bat REM win
 if [%1] == [] goto help
 
 REM This allows us to expand variables at execution
