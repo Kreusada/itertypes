@@ -1,8 +1,7 @@
 """
-Iterators in Python aren't a matter of type but of protocol.  A large
-and changing number of builtin types implement *some* flavor of
-iterator. This private library explores into some of the iterable
-types.
+This library has some useful types and functions used to get types of iterables.
+Whilst iterable types were purposely avoided by the types library, iterables offer
+unique types which could sometimes be useful to obtain.
 """
 
 from typing import Any, Iterable, Iterator

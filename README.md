@@ -57,8 +57,8 @@ isinstance(iterable, itertypes.DictValueIteratorType)
 
 ### Installation
 
-Install through pip as if it's a regular github repository.
+Install through pip.
 
 ```sh
-python -m pip install git+https://github.com/Kreusada/itertypes.git
+python -m pip install itertypes
 ```
