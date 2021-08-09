@@ -11,6 +11,7 @@ from .itertypes import (
     DictReversedKeyIteratorType,
     DictReversedValueIteratorType,
     DictValueIteratorType,
+    EnumerateIteratorType,
     FrozensetIteratorType,
     ListIteratorType,
     ListReversedIteratorType,
@@ -55,4 +56,4 @@ from .itertypes import (
 )
 
 __author__ = "Kreusada"
-__version__ = "1.4.0"
+__version__ = "1.4.1"

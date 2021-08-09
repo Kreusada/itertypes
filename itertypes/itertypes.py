@@ -19,6 +19,7 @@ DictReversedIteratorType      = type(iter(reversed({})))  # same as dict.keys()
 DictReversedKeyIteratorType   = type(iter(reversed({}.keys())))
 DictReversedValueIteratorType = type(iter(reversed({}.values())))
 DictValueIteratorType         = type(iter({}.values()))
+EnumerateIteratorType         = type(iter(enumerate([])))
 FrozensetIteratorType         = type(iter(frozenset()))  # same as set
 ListIteratorType              = type(iter([]))
 ListReversedIteratorType      = type(iter(reversed([])))
@@ -483,6 +484,25 @@ def isdefaultdictiterator(object: Iterator[Any]) -> bool:
         return False
 
     return isinstance(object, DefaultDictIteratorType)
+
+
+def isenumerateiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is an enumerate iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's an enumerate iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is an enumerate iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, EnumerateIteratorType)
 
 
 def isdequeiterator(object: Iterator[Any]) -> bool:
