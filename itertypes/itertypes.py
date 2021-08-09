@@ -4,10 +4,13 @@ Whilst iterable types were purposely avoided by the types library, iterables off
 unique types which could sometimes be useful to obtain.
 """
 
+from collections import OrderedDict, defaultdict, deque
 from typing import Any, Iterable, Iterator
 
 BytearrayIteratorType         = type(iter(bytearray()))
 ByteIteratorType              = type(iter(bytes()))
+DefaultDictIteratorType       = type(iter(defaultdict()))
+DequeIteratorType             = type(iter(deque()))
 DictItemIteratorType          = type(iter({}.items()))
 DictIteratorType              = type(iter({}))  # same as dict.keys()
 DictKeyIteratorType           = type(iter({}.keys()))
@@ -22,6 +25,7 @@ ListReversedIteratorType      = type(iter(reversed([])))
 LongRangeIteratorType         = type(iter(range(1 << 1000)))
 MapIteratorType               = type(iter(map([],[])))
 MemoryviewIteratorType        = type(iter(memoryview(bytes())))  # generic
+OrderedDictIteratorType       = type(iter(OrderedDict()))
 RangeIteratorType             = type(iter(range(0)))
 SetIteratorType               = type(iter({1,}))
 StringIteratorType            = type(iter(""))
@@ -441,6 +445,63 @@ def ismemoryviewiterator(object: Iterator[Any]) -> bool:
         return False
 
     return isinstance(object, MemoryviewIteratorType)
+
+
+def isordereddictiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a collections.OrderedDict() iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a OrderedDict iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a OrderedDict iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, OrderedDictIteratorType)
+
+
+def isdefaultdictiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a collections.defaultdict() iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a defaultdict iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a defaultdict iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, DefaultDictIteratorType)
+
+
+def isdequeiterator(object: Iterator[Any]) -> bool:
+    """Returns True or False based on whether the given object is a collections.deque() iterator.
+
+    Parameters
+    ----------
+    object: Any
+        The object to see if it's a deque iterator.
+
+    Returns
+    -------
+    bool
+        Whether the given object is a deque iterator.
+    """
+    if not isiterable(object):
+        return False
+
+    return isinstance(object, DequeIteratorType)
 
 
 def filter_array(iterable: Iterable[Any], *types) -> Iterable[Any]:

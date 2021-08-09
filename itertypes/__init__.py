@@ -1,6 +1,8 @@
 from .itertypes import (
     BytearrayIteratorType,
     ByteIteratorType,
+    DefaultDictIteratorType,
+    DequeIteratorType,
     DictItemIteratorType,
     DictIteratorType,
     DictKeyIteratorType,
@@ -15,6 +17,7 @@ from .itertypes import (
     LongRangeIteratorType,
     MapIteratorType,
     MemoryviewIteratorType,
+    OrderedDictIteratorType,
     RangeIteratorType,
     SetIteratorType,
     StringIteratorType,
@@ -27,6 +30,8 @@ from .itertypes import (
     filter_type,
     isbytearrayiterator,
     isbytesiterator,
+    isdefaultdictiterator,
+    isdequeiterator,
     isdictitemiterator,
     isdictiterator,
     isdictkeyiterator,
@@ -41,6 +46,7 @@ from .itertypes import (
     islistreversediterator,
     islongrangeiterator,
     ismapiterator,
+    isordereddictiterator,
     israngeiterator,
     issetiterator,
     isstringiterator,
@@ -49,4 +55,4 @@ from .itertypes import (
 )
 
 __author__ = "Kreusada"
-__version__ = "1.3.1"
+__version__ = "1.4.0"
