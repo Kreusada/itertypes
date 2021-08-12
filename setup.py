@@ -14,6 +14,7 @@ setup(
     author="Kreusada",
     author_email="kreusadaprojects@gmail.com",
     description="A small library used to obtain types for various builtin iterators.",
+    license="MIT"
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Kreusada/itertypes",
