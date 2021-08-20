@@ -1,10 +1,11 @@
-__version__ = "1.6.0"
-
 """
 This library has some useful types and functions used to get types of iterables.
 Whilst iterable types were purposely avoided by the types library, iterables offer
 unique types which could sometimes be useful to obtain.
 """
+
+__version__ = "1.6.1"
+
 
 from collections import OrderedDict as od, defaultdict, deque
 from typing import (
