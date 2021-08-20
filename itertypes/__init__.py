@@ -1,4 +1,4 @@
-__version__ = "1.5.0"
+__version__ = "1.6.0"
 
 """
 This library has some useful types and functions used to get types of iterables.
